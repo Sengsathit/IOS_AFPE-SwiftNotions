@@ -17,29 +17,31 @@ struct ContentView: View {
     @State var errorMessage: String = ""
     
     var body: some View {
-        VStack {
-            
-            // Champs de saisie pour l'identifiant et le mot de passe
-            TextField("Login", text: $login).padding().border(Color.blue, width: 2)
-            TextField("Password", text: $password).padding().border(Color.purple, width: 2)
-            TextField("Password control", text: $passwordControl).padding().border(Color.purple, width: 2)
-            
-            // Afichage des messages d'erreur
-            if showError {
-                Text(errorMessage).padding().foregroundColor(.white).background(Color.red)
-            }
-            
-            // Bouton de validation
-            Button(action: {
-                self.validate()
-            }, label: {
-                Text("VALIDER").padding().foregroundColor(.white).background(Color.orange).cornerRadius(8)
-            }).padding()
-            
-        }.padding()
+        NavigationView {
+            VStack {
+                
+                // Champs de saisie pour l'identifiant et le mot de passe
+                TextField("Login", text: $login).padding().border(Color.blue, width: 2)
+                TextField("Password", text: $password).padding().border(Color.purple, width: 2)
+                TextField("Password control", text: $passwordControl).padding().border(Color.purple, width: 2)
+                
+                // Afichage des messages d'erreur
+                if showError {
+                    Text(errorMessage).padding().foregroundColor(.white).background(Color.red)
+                }
+                
+                // Bouton de validation
+                Button(action: {
+                    self.validate()
+                }, label: {
+                    Text("VALIDER").padding().foregroundColor(.white).background(Color.orange).cornerRadius(8)
+                }).padding()
+                
+                }.padding().navigationBarTitle("Inscription")
+        }
     }
     
-    // Valide la subcription
+    // Valide l'inscription
     func validate() {
         do {
             showError = false
@@ -71,7 +73,7 @@ struct ContentView: View {
     }
 }
 
-// Erreurs pouvant survenir lors de la subscription
+// Erreurs pouvant survenir lors de l'inscription
 enum SubscriptionError: Error {
     case invalidLogin
     case invalidPassword
