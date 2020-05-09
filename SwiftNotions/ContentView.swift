@@ -17,27 +17,28 @@ struct ContentView: View {
     @State private var errorMessage: String = ""        // message d'erreur à afficher
     
     var body: some View {
-        VStack {
-            
-            // Champs de saisie pour l'identifiant et le mot de passe
-            TextField("Login", text: $login).padding().border(Color.blue, width: 2)
-            TextField("Password", text: $password).padding().border(Color.purple, width: 2)
-            TextField("Password control", text: $passwordControl).padding().border(Color.purple, width: 2)
-            
-            // Afichage des messages d'erreur
-            if showError {
-                Text(errorMessage).padding().foregroundColor(.white).background(Color.red)
-            }
-            
-            // Bouton de validation
-            Button(action: {
-                // TODO-4
-                // appeler la fonction de validation de la souscription
-            }, label: {
-                Text("VALIDER").padding().foregroundColor(.white).background(Color.orange).cornerRadius(8)
-            }).padding()
-            
-        }.padding()
+        NavigationView {
+            VStack {
+                // Champs de saisie pour l'identifiant et le mot de passe
+                TextField("Login", text: $login).padding().border(Color.blue, width: 2)
+                TextField("Password", text: $password).padding().border(Color.purple, width: 2)
+                TextField("Password control", text: $passwordControl).padding().border(Color.purple, width: 2)
+                
+                // Afichage des messages d'erreur
+                if showError {
+                    Text(errorMessage).padding().foregroundColor(.white).background(Color.red)
+                }
+                
+                // Bouton de validation
+                Button(action: {
+                    // TODO-4
+                    // appeler la fonction de validation de l'inscription
+                }, label: {
+                    Text("VALIDER").padding().foregroundColor(.white).background(Color.orange).cornerRadius(8)
+                }).padding()
+                
+                }.padding().navigationBarTitle("Inscription")
+        }
     }
     
     // TODO-2
@@ -53,19 +54,19 @@ struct ContentView: View {
     
     
     // TODO-3
-    // Afin de valider la souscription, créez une fonction validate() qui utilisera la fonction checkSubscription() et qui traitera les eurreurs envoyés par celle-ci.
+    // Afin de valider l'inscription, créez une fonction validate() qui utilisera la fonction checkSubscription() et qui traitera les eurreurs envoyés par celle-ci.
     /*
      * ICI VOTRE CODE en utilisant do-try-catch
      * Travaillez avec les variables login, password, passwordControl, showError, messageError
      */
     
     
-
+    
 }
 
 
 // TODO-1
-// Afin de gérer les erreurs pouvant survenir lors de la subscription,
+// Afin de gérer les erreurs pouvant survenir lors de l'inscription,
 // créez un enum SubscriptionError qui adopte le protocole Error.
 // Les cas d'erreur seront : identifiant invalide, mot de passe invalide, mots de passe ne correspondent pas
 /*
