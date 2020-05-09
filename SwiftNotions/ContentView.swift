@@ -37,7 +37,10 @@ struct ContentView: View {
                     Text("VALIDER").padding().foregroundColor(.white).background(Color.orange).cornerRadius(8)
                 }).padding()
                 
+                Spacer()
+                
                 }.padding().navigationBarTitle("Inscription")
+            
         }
     }
     
