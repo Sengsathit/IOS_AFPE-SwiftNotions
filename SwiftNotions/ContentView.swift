@@ -10,11 +10,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var login: String = ""
-    @State var password: String = ""
-    @State var passwordControl: String = ""
-    @State var showError: Bool = false
-    @State var errorMessage: String = ""
+    @State private var login: String = ""               // identifiant saisi par l'utilisateur
+    @State private var password: String = ""            // mot de passe saisi par l'utilisateur
+    @State private var passwordControl: String = ""     // mot de passe confirmé par l'utilisateur
+    @State private var showError: Bool = false          // affiche ou non le message d'erreur
+    @State private var errorMessage: String = ""        // message d'erreur à afficher
     
     var body: some View {
         VStack {
@@ -31,7 +31,8 @@ struct ContentView: View {
             
             // Bouton de validation
             Button(action: {
-                self.validate()
+                // TODO-4
+                // appeler la fonction de validation de la souscription
             }, label: {
                 Text("VALIDER").padding().foregroundColor(.white).background(Color.orange).cornerRadius(8)
             }).padding()
@@ -39,45 +40,37 @@ struct ContentView: View {
         }.padding()
     }
     
-    // Valide la subcription
-    func validate() {
-        do {
-            showError = false
-            try checkSubscription()
-        } catch {
-            switch error {
-            case SubscriptionError.invalidLogin:
-                errorMessage = "Identifiant invalide  (6 caractères min)"
-            case SubscriptionError.invalidPassword:
-                errorMessage = "Mot de passe invalide (6 caractères min)"
-            case SubscriptionError.passwordsNotMatching:
-                errorMessage = "Les mots de passe ne correspondent pas"
-            default:
-                errorMessage = "Une erreur est survenue"
-            }
-            showError = true
-        }
-    }
+    // TODO-2
+    // Afin Véririfer la validité des saisies de l'utilisateur (login, password)
+    // créez une fonction checkSubscription() capable d'envoyer une erreur.
+    // Les cas d'erreur seront :
+    // - identifiant trop court (dans ce cas renvoyer une erreur de type "identifiant invalide"
+    // - mot de passe trop court (dans ce cas renvoyer une erreur de type "mot de passe invalide"
+    // - les mots de passe ne correspondent pas (dans ce cas renvoyer une erreur de type "mots de passe non identiques"
+    /*
+     * ICI VOTRE CODE
+     */
     
-    // Vérirife la validité des saisies de l'utilisateur (login, password)
-    func checkSubscription() throws {
-        if login.count < 6 {
-            throw SubscriptionError.invalidLogin
-        } else if password.count < 6 {
-            throw SubscriptionError.invalidPassword
-        } else if password != passwordControl {
-            throw SubscriptionError.passwordsNotMatching
-        }
-    }
+    
+    // TODO-3
+    // Afin de valider la souscription, créez une fonction validate() qui utilisera la fonction checkSubscription() et qui traitera les eurreurs envoyés par celle-ci.
+    /*
+     * ICI VOTRE CODE en utilisant do-try-catch
+     * Travaillez avec les variables login, password, passwordControl, showError, messageError
+     */
+    
+    
+
 }
 
-// Erreurs pouvant survenir lors de la subscription
-enum SubscriptionError: Error {
-    case invalidLogin
-    case invalidPassword
-    case passwordsNotMatching
-}
 
+// TODO-1
+// Afin de gérer les erreurs pouvant survenir lors de la subscription,
+// créez un enum SubscriptionError qui adopte le protocole Error.
+// Les cas d'erreur seront : identifiant invalide, mot de passe invalide, mots de passe ne correspondent pas
+/*
+ * ICI VOTRE CODE
+ */
 
 
 struct ContentView_Previews: PreviewProvider {
