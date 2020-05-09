@@ -39,7 +39,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                }.padding().navigationBarTitle("Inscription")
+            }.padding().navigationBarTitle("Inscription")
             
         }
     }
