@@ -9,8 +9,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let categories = [AnimalCategory.bird, AnimalCategory.fish, AnimalCategory.reptile]
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List {
+                ForEach(categories, id: \.self) { animalCategory in
+                    
+                    NavigationLink(destination: Animals(animals: getAnimals(category: animalCategory)), label: {
+                        Text(animalCategory.rawValue)
+                    })
+                    
+                    
+                }
+            }.navigationBarTitle("Catégories")
+        }
+        
     }
 }
 
